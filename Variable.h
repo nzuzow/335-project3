@@ -1,24 +1,39 @@
 #ifndef VARIABLE_H
 #define VARIABLE_H
 
+#include "Expr.h"
+#include "ExprVisitor.h"
+
 class Variable: public Expr{
+
 private:
-	bool m_var;
 
-public: 
-	Variable (bool var);
-	~Variable (bool var);
+   bool m_var;
 
-	bool Assign(bool var) {m_var = var;}
-	bool getVar() {return m_var;}
+   std::string m_str;
 
-	virtual bool compute() {return m_var;}
-	
-	
-	//virtual void accept(ExprVisitor* v) { v->visitVariable(this); }
+public:  
+
+   Variable (std::string str) {m_str = str;};
+
+   ~Variable ();
+
+   bool Assign(bool var) {m_var = var;};
+
+   bool getVar() {return m_var;};
+
+   bool getBoolVal(std::string str);
+
+   
+
+   virtual bool compute() {return m_var;};
+
+   
+
+   
+
+   virtual void accept(ExprVisitor* v) { v->visitVariable(this); };
 };
-
-
 
 
 

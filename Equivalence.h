@@ -2,6 +2,7 @@
 #define EQUIVALENCE_H
 
 #include "BoolExpr.h"
+#include "ExprVisitor.h"
 
 class Equivalence : public BoolExpr
 {
@@ -13,7 +14,7 @@ public:
 		return( getLeftOperand()->compute() == getRightOperand()->compute());
 	};
 	
-	//virtaul void accept(Exprvisitor* v) {v->visitEquivalence(this); };
+	virtual void accept(ExprVisitor* v) {v->visitEquivalence(this); };
 };
 
 

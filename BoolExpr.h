@@ -2,7 +2,7 @@
 #define BOOLEANEXPR_H
 
 #include "Expr.h"
-//#include "ExprVisitor.h"
+#include "ExprVisitor.h"
 
 
 class BoolExpr: public Expr

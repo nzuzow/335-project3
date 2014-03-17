@@ -9,7 +9,7 @@ class Or;
 class And;
 class Variable;
 class Implication;
-
+class Equivalence;
 
 class ExprVisitor{
 public: 
@@ -19,5 +19,7 @@ public:
 	virtual void visitAnd(And*)=0;
 	virtual void visitVariable(Variable*)=0;
 	virtual void visitImplication(Implication*)=0;
-
+	virtual void visitEquivalence(Equivalence*)=0;
 };
+
+#endif

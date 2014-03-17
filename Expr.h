@@ -1,6 +1,8 @@
 #ifndef EXPR_H
 #define EXPR_H
 
+#include "ExprVisitor.h"
+
 class Expr
 {
 public:

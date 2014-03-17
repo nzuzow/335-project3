@@ -14,25 +14,31 @@ private:
 
 public:  
 
-   Variable (std::string str) {m_str = str;};
+    Variable (std::string str) {m_str = str;};
 
-   ~Variable ();
+    ~Variable ();
 
-   bool Assign(bool var) {m_var = var;};
+    bool Assign(bool var) {m_var = var;};
 
-   bool getVar() {return m_var;};
+    bool getVar() {return m_var;};
+    
+    std::string getVarStr() {return m_str;};
+    
+    bool getBoolVal()
+    {
+        std::cout << std::endl << "Enter boolean value for " << m_str << ": ";
+        bool variable;
+        cin >> variable;
+        Assign(variable); //pointer get__operand() switches to correct variable
+        m_str = "GotValue";
+        return variable;
+    };
 
-   bool getBoolVal(std::string str);
 
+    virtual bool compute() {return m_var;};
    
 
-   virtual bool compute() {return m_var;};
-
-   
-
-   
-
-   virtual void accept(ExprVisitor* v) { v->visitVariable(this); };
+    virtual void accept(ExprVisitor* v) { v->visitVariable(this); };
 };
 
 

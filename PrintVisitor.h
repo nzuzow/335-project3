@@ -20,12 +20,21 @@ public:
 
 	virtual void visitVariable( Variable* var)
 	{
-		std::cout << var->getVar();
+		if( var->getVarStr() != "GotValue")
+        {
+            std::cout << var->getVarStr();
+        }
+        else
+        {
+            std::cout << var->getVar();
+        }
 	};
 	
 	virtual void visitNegate( Negate* neg)
 	{
+        std::cout << "~(";
 		neg->getOperand()->accept(this);
+        std::cout << ")";
 	};
 
 	virtual void visitAnd( And* and1)
@@ -50,7 +59,7 @@ public:
 	{
 		std::cout << "(";
 		imp->getLeftOperand()->accept(this);
-		std::cout << "<";
+		std::cout << ">";
 		imp->getRightOperand()->accept(this);
 		std::cout << ")";
 	};

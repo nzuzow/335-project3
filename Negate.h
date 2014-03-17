@@ -12,8 +12,22 @@ public:
 	virtual ~Negate() {delete m_opPtr;}
 	Expr* getOperand() {return m_opPtr;}
 	
-	virtual bool compute() {return -(m_opPtr->compute());}
-	virtual void accept(ExprVisitor* v) {v->visitNegate(this);}
+	//virtual bool compute() {return -(m_opPtr->compute());}
+	virtual bool compute()
+    {
+        if( m_opPtr->compute() == 0)
+        {
+            return 1;
+        }
+        
+        else
+        {
+            return 0;
+        }
+        
+    };
+    
+    virtual void accept(ExprVisitor* v) {v->visitNegate(this);}
 };
 	
 

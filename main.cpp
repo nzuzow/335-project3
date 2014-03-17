@@ -28,6 +28,8 @@ int main()
     
     Expr* exequal = new Equivalence(exnot, new Literal(true));
     
+    Expr* exvar = new Negate(new Or(new Variable("salad"), new And(new Variable("x"), new Variable("y"))));
+    
     EvaluationVisitor ev;
     PrintVisitor pv;
     
@@ -58,6 +60,14 @@ int main()
     
     cout << endl;
     cout << exequal->compute() << endl;
+    
+    //call accept of Variable
+    exvar->accept(&pv);
+    exvar->accept(&ev);
+    exvar->accept(&pv);
+    
+    cout << endl;
+    cout << exvar->compute() << endl;
     
     delete ex;
     cout << endl;

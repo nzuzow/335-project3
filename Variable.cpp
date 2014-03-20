@@ -1,17 +1,7 @@
+#include <iostream>
 #include "Variable.h"
 
-
-/*bool Variable::Variable (std::string var)
-
-{
-
-   cout << "Enter boolean value for " << var << ": ";
-
-   bool variable;
-
-   cin >> variable;
-
-}*/
+using namespace std;
 
 
 bool Variable::getBoolVal (std::string str)
@@ -23,6 +13,10 @@ bool Variable::getBoolVal (std::string str)
    bool variable;
 
    cin >> variable;
+    
+    Assign(variable);
+    
+    m_str = "GotValue";
 
    return variable;
 

@@ -13,7 +13,7 @@ private:
 
 protected:
 	BoolExpr(Expr* left, Expr* right):m_leftPtr(left),m_rightPtr(right) {};
-	virtual ~BoolExpr() {delete m_leftPtr; delete m_rightPtr;}
+	virtual ~BoolExpr(); // {delete m_leftPtr; delete m_rightPtr;};
 
 public:
 	Expr* getLeftOperand() {return m_leftPtr;};

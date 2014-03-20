@@ -13,12 +13,13 @@ using namespace std;
 #include "Equivalence.h"
 #include "EvaluationVisitor.h"
 #include "PrintVisitor.h"
+#include "SimplifyVisitor.h"
 
 
 int main()
 {
 
-    Expr* ex= new And(new Literal(true), new Literal(false));
+    /*Expr* ex= new And(new Literal(true), new Literal(false));
 
     Expr* ex2 = new Or(new Literal(true), new Literal(false));
 
@@ -28,11 +29,15 @@ int main()
     
     Expr* exequal = new Equivalence(exnot, new Literal(true));
     
-    Expr* exvar = new Negate(new Or(new Variable("salad"), new And(new Variable("x"), new Variable("y"))));
+    Expr* exvar = new Negate(new Or(new Variable("salad"), new And(new Variable("x"), new Variable("y"))));*/
+    
+    Expr* exsimp = new And(new And(new Literal(true), new Literal(false)), new Variable("X"));
+    Expr* eximp = new Equivalence(new Implication(new And(new Variable("x"), new Literal(true)), new Or(new Literal(false), new Variable("y"))), new Variable("z"));
     
     EvaluationVisitor ev;
     PrintVisitor pv;
-    
+    SimplifyVisitor sp;
+    /*
     //call accept of And
     ex->accept(&ev);
     ex->accept(&pv);
@@ -69,6 +74,33 @@ int main()
     cout << endl;
     cout << exvar->compute() << endl;
     
-    delete ex;
+    */
+    
+    //call accept of And with simplify
+    //exsimp->accept(&pv);
+    exsimp->accept(&pv);
+    cout << endl;
+    cout << "Simplified version: ";
+    exsimp->accept(&sp);
+    exsimp->accept(&ev);
+    //exsimp->accept(&pv);
+    
+    cout << endl;
+    cout << "Evaluation Result: " << endl;
+    cout << exsimp->compute() << endl;
+    
+    //for test case 2.1
+    eximp->accept(&pv);
+    cout << endl;
+    cout << "Simplified version: ";
+    eximp->accept(&sp);
+    eximp->accept(&ev);
+    //exsimp->accept(&pv);
+    
+    cout << endl;
+    cout << "Evaluation Result: " << endl;
+    cout << eximp->compute() << endl;
+    
+    delete eximp;
     cout << endl;
 }

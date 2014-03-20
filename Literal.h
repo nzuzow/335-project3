@@ -2,6 +2,7 @@
 #define LITERAL_H
 
 #include "ExprVisitor.h"
+#include "Expr.h"
 
 class Literal: public Expr{
 private:
@@ -11,6 +12,9 @@ public:
 	Literal (bool lit) {m_lit = lit;};
 	~Literal ();
 	bool getLiteral() {return m_lit;}
+    
+    /*Test to allow us to see if its a variable or literal*/
+    std::string getType() {return "lit";};
 
 	virtual bool compute() {return m_lit;}
 

@@ -1,5 +1,5 @@
-#ifndef EVAVISITOR_H
-#define EVAVISITOR_H
+#ifndef EVALUATIONVISITOR_H
+#define EVALUATIONVISITOR_H
 
 #include <stack>
 #include "ExprVisitor.h"
@@ -14,21 +14,26 @@ class EvaluationVisitor: public ExprVisitor {
 
 private:
 
-   stack <bool> m_stack;
+    std::stack <bool> m_stack;
 
 public:
 
-    bool getValue() {return  m_stack.top(); m_stack.pop();};
+    //bool getValue() {return  m_stack.top(); m_stack.pop();};
+    bool getValue();
+    /*{
+        bool result = m_stack.top();
+        m_stack.pop();
+        return result;
+    }*/
 
+    virtual void visitLiteral (Literal* lit); //{m_stack.push(lit->getLiteral());};
 
-    virtual void visitLiteral (Literal* lit) {m_stack.push(lit->getLiteral());};
-
-    virtual void visitVariable (Variable* var)
-    {
+    virtual void visitVariable (Variable* var);
+    /*{
         m_stack.push(var->getBoolVal());
-    };
+    };*/
 
-   virtual void visitNegate (Negate* neg) {
+    virtual void visitNegate (Negate* neg); /*{
 
        neg->getOperand()->accept(this);
 
@@ -46,9 +51,9 @@ public:
        
        m_stack.push(val);
 
-   };
+   };*/
 
-   virtual void visitOr (Or* o) {
+    virtual void visitOr (Or* o); /*{
 
        o->getLeftOperand()->accept(this);
 
@@ -60,12 +65,12 @@ public:
 
        m_stack.push(lval + rval);
 
-   };
+   };*/
 
    
 
-   virtual void visitAnd (And* a) {
-
+    virtual void visitAnd (And* a);
+    /*{
        a->getLeftOperand()->accept(this);
 
        a->getRightOperand()->accept(this);
@@ -76,11 +81,11 @@ public:
 
        m_stack.push(lval * rval);
 
-   };
+   };*/
 
    
 
-   virtual void visitImplication (Implication* imp) {
+    virtual void visitImplication (Implication* imp); /*{
 
        imp->getLeftOperand()->accept(this);
 
@@ -89,14 +94,31 @@ public:
        bool rval = m_stack.top(); m_stack.pop();
 
        bool lval = m_stack.top(); m_stack.pop();
+       
+       /*This is equivalent to ~X|Y */
+       
+       /*if( lval == false)
+       {
+           lval = true;
+       }
+       
+       else
+       {
+           lval = false;
+       }
+       
+       bool result = rval + lval;
+       
+       m_stack.push(result);
+       
 
-       m_stack.push(lval > rval);
+       //m_stack.push(lval > rval);
 
-   };
+   };*/
 
    
 
-   virtual void visitEquivalence (Equivalence* eq) {
+    virtual void visitEquivalence (Equivalence* eq); /*{
 
        eq->getLeftOperand()->accept(this);
 
@@ -105,9 +127,12 @@ public:
        bool rval = m_stack.top(); m_stack.pop();
 
        bool lval = m_stack.top(); m_stack.pop();
+       
+       bool result = rval == lval;
+       
 
-       m_stack.push(lval == rval);
-	};
+       m_stack.push(result);
+	};*/
 
 };
 

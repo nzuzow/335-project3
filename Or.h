@@ -18,17 +18,20 @@ class Or: public BoolExpr{
 public:
 
    Or(Expr* left, Expr* right): BoolExpr(left, right) {};
+    
+    /*Test to allow us to get its type*/
+    std::string getType() {return "or";};
 
-   virtual bool compute ()
+    virtual bool compute ();
 
-   {
+   /*{
 
 		bool lop = getLeftOperand()->compute();
 
 		bool rop = getRightOperand()->compute();
 		
 		return (lop + rop);
-   };
+   };*/
 
    virtual void accept(ExprVisitor* v) {v->visitOr(this);};
 

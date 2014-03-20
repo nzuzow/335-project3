@@ -8,6 +8,9 @@ class Equivalence : public BoolExpr
 {
 public:
 	Equivalence(Expr* left, Expr* right): BoolExpr(left, right) {};
+    
+    /*test to get the type*/
+    std::string getType() {return "eq";};
 	
 	virtual bool compute()
 	{

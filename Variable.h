@@ -22,17 +22,20 @@ public:
 
     bool getVar() {return m_var;};
     
+    /*Test to allow us to see if its a variable or literal*/
+    std::string getType() {return "var";};
+    
     std::string getVarStr() {return m_str;};
     
-    bool getBoolVal()
-    {
+    bool getBoolVal();
+    /*{
         std::cout << std::endl << "Enter boolean value for " << m_str << ": ";
         bool variable;
         cin >> variable;
         Assign(variable); //pointer get__operand() switches to correct variable
         m_str = "GotValue";
         return variable;
-    };
+    };*/
 
 
     virtual bool compute() {return m_var;};
